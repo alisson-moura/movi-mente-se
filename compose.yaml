@@ -1,0 +1,11 @@
+services:
+  database:
+    image: postgres:16-alpine
+    container_name: db_movimente_se
+    restart: no
+    environment:
+      - POSTGRES_PASSWORD=admin@123
+      - POSTGRES_DB=movimente-se
+      - POSTGRES_USER=admin
+    ports:
+      - "5432:5432"

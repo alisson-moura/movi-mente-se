@@ -1,0 +1,72 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.funfarme:movimente-se >----------------------
+[INFO] Building movimente-se 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.3:run (default-cli) > test-compile @ movimente-se >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ movimente-se ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ movimente-se ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 3 source files with javac [debug release 17] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ movimente-se ---
+[INFO] skip non existing resourceDirectory /Users/alisson.moura/Developer/movimente-se/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ movimente-se ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 1 source file with javac [debug release 17] to target/test-classes
+[INFO] 
+[INFO] <<< spring-boot:3.2.3:run (default-cli) < test-compile @ movimente-se <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.3:run (default-cli) @ movimente-se ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.3)
+
+2026-02-11T15:37:31.894-03:00  INFO 7241 --- [movimente-se] [           main] c.f.movimente_se.MovimenteSeApplication  : Starting MovimenteSeApplication using Java 25.0.1 with PID 7241 (/Users/alisson.moura/Developer/movimente-se/target/classes started by alisson.moura in /Users/alisson.moura/Developer/movimente-se)
+2026-02-11T15:37:31.895-03:00  INFO 7241 --- [movimente-se] [           main] c.f.movimente_se.MovimenteSeApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-02-11T15:37:32.092-03:00  INFO 7241 --- [movimente-se] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-11T15:37:32.098-03:00  INFO 7241 --- [movimente-se] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 0 JPA repository interfaces.
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.apache.tomcat.jni.Library in an unnamed module (file:/Users/alisson.moura/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.19/tomcat-embed-core-10.1.19.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+2026-02-11T15:37:32.265-03:00  INFO 7241 --- [movimente-se] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-11T15:37:32.271-03:00  INFO 7241 --- [movimente-se] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-11T15:37:32.272-03:00  INFO 7241 --- [movimente-se] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2026-02-11T15:37:32.290-03:00  INFO 7241 --- [movimente-se] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-11T15:37:32.291-03:00  INFO 7241 --- [movimente-se] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 380 ms
+2026-02-11T15:37:32.332-03:00  INFO 7241 --- [movimente-se] [           main] com.zaxxer.hikari.HikariDataSource       : MovimenteSe-Pool - Starting...
+2026-02-11T15:37:32.408-03:00  INFO 7241 --- [movimente-se] [           main] com.zaxxer.hikari.pool.HikariPool        : MovimenteSe-Pool - Added connection org.postgresql.jdbc.PgConnection@5583098b
+2026-02-11T15:37:32.409-03:00  INFO 7241 --- [movimente-se] [           main] com.zaxxer.hikari.HikariDataSource       : MovimenteSe-Pool - Start completed.
+2026-02-11T15:37:32.442-03:00  INFO 7241 --- [movimente-se] [           main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.22.3 by Redgate
+2026-02-11T15:37:32.442-03:00  INFO 7241 --- [movimente-se] [           main] o.f.c.internal.license.VersionPrinter    : See release notes here: https://rd.gt/416ObMi
+2026-02-11T15:37:32.442-03:00  INFO 7241 --- [movimente-se] [           main] o.f.c.internal.license.VersionPrinter    : 
+2026-02-11T15:37:32.448-03:00  INFO 7241 --- [movimente-se] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost/movimente-se (PostgreSQL 16.11)
+2026-02-11T15:37:32.454-03:00  WARN 7241 --- [movimente-se] [           main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 16.11 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 15.
+2026-02-11T15:37:32.472-03:00  INFO 7241 --- [movimente-se] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.010s)
+2026-02-11T15:37:32.494-03:00  INFO 7241 --- [movimente-se] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-02-11T15:37:32.496-03:00  INFO 7241 --- [movimente-se] [           main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-02-11T15:37:32.532-03:00  INFO 7241 --- [movimente-se] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-11T15:37:32.557-03:00  INFO 7241 --- [movimente-se] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-02-11T15:37:32.571-03:00  INFO 7241 --- [movimente-se] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-11T15:37:32.670-03:00  INFO 7241 --- [movimente-se] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-11T15:37:32.816-03:00  INFO 7241 --- [movimente-se] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-11T15:37:32.817-03:00  INFO 7241 --- [movimente-se] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-11T15:37:32.836-03:00  WARN 7241 --- [movimente-se] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-11T15:37:32.960-03:00  INFO 7241 --- [movimente-se] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-02-11T15:37:32.963-03:00  INFO 7241 --- [movimente-se] [           main] c.f.movimente_se.MovimenteSeApplication  : Started MovimenteSeApplication in 1.188 seconds (process running for 1.307)

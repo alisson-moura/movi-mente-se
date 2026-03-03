@@ -1,0 +1,31 @@
+info:
+  name: Cadastrar Aluno
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8080/alunos
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "Carlos",
+        "sobrenome": "Almeida",
+        "email": "carlos.almeida@email.com",
+        "senha": "senhaSegura123",
+        "cpf": "12345678909",
+        "cracha": "123456",
+        "telefone": "17999998888",
+        "genero": "M",
+        "data_nascimento": "1995-08-20",
+        "empresa_id": 1,
+        "group_id": 1
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
