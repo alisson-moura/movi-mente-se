@@ -1,4 +1,4 @@
-package com.funfarme.movimente_se;
+package com.funfarme.movimente_se.entity;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 

@@ -13,6 +13,6 @@ public record RequestCadastrarAlunoDto(
         String genero,
         LocalDate data_nascimento,
         Integer empresa_id,
-        Integer group_id
+        Integer grupo_id
 ) {
 }

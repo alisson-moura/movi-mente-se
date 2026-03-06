@@ -1,12 +1,13 @@
 package com.funfarme.movimente_se.aluno;
 
-import com.funfarme.movimente_se.Aluno;
 import com.funfarme.movimente_se.BaseE2ETest;
-import com.funfarme.movimente_se.SessaoAluno;
+import com.funfarme.movimente_se.entity.Aluno;
+import com.funfarme.movimente_se.entity.Sessao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseCookie;
 import org.springframework.test.web.servlet.client.ExchangeResult;
 
@@ -18,33 +19,37 @@ import java.time.temporal.ChronoUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BuscarSessaoE2ETest extends BaseE2ETest {
+    private Sessao sessaoOriginal;
 
-    private SessaoAluno sessaoOriginal;
+    @Autowired
+    private AlunoTestFactory alunoTestFactory;
 
     @BeforeEach
     public void criarSessao() {
-        AlunoTestDataBuilder testDataBuilder = new AlunoTestDataBuilder(this.jdbcTemplate, this.clock);
-        Aluno aluno = testDataBuilder.salvarNoBanco(testDataBuilder.build());
-        this.sessaoOriginal = testDataBuilder.novaSessaoPara(aluno.id);
+        AlunoTestDataBuilder testDataBuilder = new AlunoTestDataBuilder(this.jdbcTemplate);
+
+        Aluno aluno = alunoTestFactory.salvarNovoAluno(testDataBuilder
+                .comGrupoValido()
+                .comEmpresaValida()
+                .build()
+        );
+        this.sessaoOriginal = alunoTestFactory.novaSessaoPara(aluno);
     }
 
     @Test
     @DisplayName("Deve renovar a data de expiração da sessão com sucesso")
     void deveRenovarSessaoComTokenValido() {
-        // Arrange
         Instant agoraMockado = Instant.now().plus(15, ChronoUnit.DAYS);
         Mockito.when(this.clock.instant()).thenReturn(agoraMockado);
         Mockito.when(this.clock.getZone()).thenReturn(ZoneId.systemDefault());
 
-        // Act
         ExchangeResult response = client.get()
                 .uri("/alunos/sessoes")
-                .header("Cookie", "session_id=" + sessaoOriginal.token)
+                .header("Cookie", "session_id=" + sessaoOriginal.getToken())
                 .exchange()
                 .expectStatus().isOk()
                 .returnResult();
 
-        // Assert
         ResponseCookie sessionCookie = response.getResponseCookies().getFirst("session_id");
 
         assertNotNull(sessionCookie, "O cookie de sessão não foi retornado na resposta");
@@ -56,24 +61,20 @@ public class BuscarSessaoE2ETest extends BaseE2ETest {
     @Test
     @DisplayName("Não deve permitir renovar quando a sessão estiver expirada")
     void naoDeveRenovarComSessaoExpirada() {
-        // Arrange
-        // Avança o tempo em 31 dias, forçando a passagem do limite de 30 dias da sessão
         Instant agoraMockado = Instant.now().plus(31, ChronoUnit.DAYS);
         Mockito.when(this.clock.instant()).thenReturn(agoraMockado);
         Mockito.when(this.clock.getZone()).thenReturn(ZoneId.systemDefault());
 
-        // Act & Assert
         client.get()
                 .uri("/alunos/sessoes")
-                .header("Cookie", "session_id=" + sessaoOriginal.token)
+                .header("Cookie", "session_id=" + sessaoOriginal.getToken())
                 .exchange()
-                .expectStatus().isUnauthorized(); // 401 indica que o token perdeu a validade
+                .expectStatus().isUnauthorized();
     }
 
     @Test
     @DisplayName("Não deve buscar ou renovar sessão com um token inexistente ou modificado")
     void naoDeveRenovarComTokenInvalido() {
-        // Act & Assert
         client.get()
                 .uri("/alunos/sessoes")
                 .header("Cookie", "session_id=token-invalido-123")

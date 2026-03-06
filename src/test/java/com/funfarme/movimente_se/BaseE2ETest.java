@@ -1,7 +1,6 @@
 package com.funfarme.movimente_se;
 
 import net.datafaker.Faker;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +33,24 @@ public class BaseE2ETest {
 
     @BeforeEach
     void limparBancoDeDados() {
-        jdbcTemplate.execute("TRUNCATE TABLE sessoes_alunos RESTART IDENTITY CASCADE");
-        jdbcTemplate.execute("TRUNCATE TABLE alunos RESTART IDENTITY CASCADE");
+        jdbcTemplate.execute("TRUNCATE TABLE sessoes RESTART IDENTITY CASCADE");
+        jdbcTemplate.execute("TRUNCATE TABLE alunos");
+        jdbcTemplate.execute("TRUNCATE TABLE grupos RESTART IDENTITY CASCADE");
+        jdbcTemplate.execute("TRUNCATE TABLE empresas RESTART IDENTITY CASCADE");
+
+        jdbcTemplate.update("""
+                INSERT INTO
+                    empresas (nome, cnpj)
+                VALUES
+                    (?, NULL)
+                """, faker.company().name());
+
+        jdbcTemplate.update("""
+                INSERT INTO
+                    grupos (nome, descricao, pagante)
+                VALUES
+                    (?, ?, TRUE)
+                """, faker.commerce().department(), faker.lorem().sentence());
 
         Mockito.when(this.clock.instant()).thenReturn(Instant.now());
         Mockito.when(this.clock.getZone()).thenReturn(ZoneId.systemDefault());
