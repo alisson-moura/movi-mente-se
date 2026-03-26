@@ -36,6 +36,24 @@ Sistema de gerenciamento de academias corporativas — permite que empresas disp
 - Maven 3.9+
 - Docker e Docker Compose
 
+## Variáveis de ambiente
+
+A aplicação usa variáveis de ambiente para configurações sensíveis e dinâmicas. Copie o arquivo de exemplo e preencha os valores:
+
+```bash
+cp .env.example .env
+```
+
+| Variável        | Descrição                          | Padrão                                    |
+|-----------------|------------------------------------|-------------------------------------------|
+| `DB_URL`        | URL de conexão JDBC com o banco    | `jdbc:postgresql://localhost/movimente-se` |
+| `DB_USERNAME`   | Usuário do banco de dados          | `admin`                                   |
+| `DB_PASSWORD`   | Senha do banco de dados            | —                                         |
+| `DB_POOL_MAX`   | Máximo de conexões no pool         | `10`                                      |
+| `DB_POOL_MIN_IDLE` | Mínimo de conexões ociosas      | `5`                                       |
+
+> O arquivo `.env` **não deve ser commitado**. Apenas o `.env.example` (sem valores sensíveis) é versionado.
+
 ## Instalação e execução
 
 ```bash
@@ -43,10 +61,14 @@ Sistema de gerenciamento de academias corporativas — permite que empresas disp
 git clone https://github.com/seu-usuario/movimente-se.git
 cd movimente-se
 
-# 2. Suba o banco de dados
+# 2. Configure as variáveis de ambiente
+cp .env.example .env
+# edite o .env com os valores corretos
+
+# 3. Suba o banco de dados
 docker compose up -d
 
-# 3. Execute a aplicação
+# 4. Execute a aplicação
 mvn spring-boot:run
 ```
 
