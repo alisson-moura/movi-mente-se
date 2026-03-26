@@ -2,13 +2,10 @@ package com.funfarme.movimente_se.repository;
 
 import com.funfarme.movimente_se.entity.Sessao;
 import org.jspecify.annotations.NonNull;
-import org.jspecify.annotations.NullMarked;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.*;
 import java.time.Clock;
